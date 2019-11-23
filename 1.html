@@ -16,53 +16,6 @@
     <a-entity vive-controls="hand: right" controller-cursor></a-entity>
   </a-scene>
   
-  <script>
-  var scene = document.querySelector('a-scene');
-    var cylinder = document.createElement('a-cylinder');
 
-    cylinder.setAttribute('color', '#FF9500');
-    cylinder.setAttribute('height', '2');
-    cylinder.setAttribute('radius', '0.75');
-    cylinder.setAttribute('position', '3 1 0');
-    scene.appendChild(cylinder);
-
-    var boxEl = document.querySelector('a-cube');
-    boxEl.addEventListener('mouseenter', function() {
-      boxEl.setAttribute('color', 'red')
-    });
-    boxEl.addEventListener('mouseleave', function() {
-      boxEl.setAttribute('color', 'magenta')
-    });
-
-    var cylEl = document.querySelector('a-cylinder');
-    cylEl.addEventListener('mouseenter', function() {
-      cylEl.setAttribute('color', 'black')
-    });
-    cylEl.addEventListener('mouseleave', function() {
-      cylEl.setAttribute('color', 'maroon')
-    });
-
-    var t = 0;
-    //document.querySelector('a-cube').setAttribute('color', 'green');
-
-    // Component to change to random color on click.
-    AFRAME.registerComponent('cursor-listener', {
-      init: function() {
-        //var COLORS = ['red', 'green', 'blue'];
-        this.el.addEventListener('mouseenter', function(evt) {
-          //var randomIndex = Math.floor(Math.random() * COLORS.length);
-          this.setAttribute('material', 'color', 'red');
-          console.log('I was clicked at: ', evt.detail.intersection.point);
-        });
-      }
-    });
-
-    function render() {
-      t += 0.01;
-      requestAnimationFrame(render);
-      cylinder.setAttribute('position', '3 ' + (Math.sin(t * 2) + 1) + ' 0');
-    }
-    render();
-</script>
   
-  
+</html>
