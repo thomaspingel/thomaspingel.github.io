@@ -8,6 +8,11 @@
  
 <a-scene>
 <!--    <a-scene potree-loader="pointBudget: 1;">-->
+	<a-entity id="rightHand" laser-controls="hand: right"></a-entity>
+
+      <a-box position="-3 1 -5" rotation="0 90 30" scale="" color="#00FFFF" intersect-color-change></a-box>
+
+
         <a-entity 
           id="lion"
           potree-loader="
@@ -25,9 +30,6 @@
 <!--	<a-entity laser-controls line="color: red; opacity: 0.75" raycaster="objects: .links; far: 5"></a-entity> -->
 <!--	<a-entity id="leftHand" laser-controls="hand: left" raycaster="objects: .links" daydream-controls="" gearvr-controls="" oculus-go-controls="" oculus-touch-controls="" vive-controls="" vive-focus-controls="" windows-motion-controls=""></a-entity>-->
 
-	<a-entity id="rightHand" laser-controls="hand: right"></a-entity>
-
-      <a-box position="-3 1 -5" rotation="0 90 30" scale="" color="#0000FF" intersect-color-change></a-box>
 
 
 
