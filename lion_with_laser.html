@@ -22,7 +22,19 @@
 
 <!--	<a-entity laser-controls line="color: red; opacity: 0.75" raycaster="objects: .links; far: 5"></a-entity> -->
 	<a-entity id="leftHand" laser-controls="hand: left" raycaster="objects: [mixin='box']" daydream-controls="" gearvr-controls="" oculus-go-controls="" oculus-touch-controls="" vive-controls="" vive-focus-controls="" windows-motion-controls=""></a-entity>
-	<a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: [mixin='box']" line="color: #118A7E" daydream-controls="" gearvr-controls="" oculus-go-controls="" oculus-touch-controls="" vive-controls="" vive-focus-controls="" windows-motion-controls=""></a-entity>
+
+      <a-box position="-3 1 -5" rotation="0 90 30" scale="" color="#F44336"
+                  event-set__enter="_event: mouseenter; _target: #bg; color: #F44336">
+      </a-box>
+      <a-box position="-1 2 -5" rotation="0 45 45" scale="0.75 0.75 0.75" color="#2196F3"
+                  event-set__enter="_event: mouseenter; _target: #bg; color: #2196F3">
+      </a-box>
+      <a-box position="2 2 -4" rotation="0 45 30" scale="0.75 0.75 0.75" color="#009688"
+                  event-set__enter="_event: mouseenter; _target: #bg; color: #009688">            
+      </a-box>
+      <a-box position="1 1 -5" rotation="0 70 30" scale="0.9 0.9 0.9" color="#E91E63"
+                  event-set__enter="_event: mouseenter; _target: #bg; color: #E91E63">
+      </a-box>  
 
    </a-scene>
   </body>
