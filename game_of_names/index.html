@@ -43,9 +43,16 @@ Mia
 Isla
 Sage
 Cora
+Elaine/Elaina
+Lydia
+June
 </textarea>
-<button type="button" onClick="gathernames()">Submit!</button>
-<button type="button" onClick="show_rankings()">Rankings</button>
+<BR>
+<button type="button" onClick="gathernames()">Play with these names!</button>
+<button type="button" onClick="show_rankings()">Calculate Rankings</button>
+<BR>
+<button type="button" onClick="load_saved_names()">Load Saved Names</button>
+<button type="button" onClick="save_game()">Save Game</button>
 <table border="5" width="100%" align="center">
 <tr>
 <td id="left_name" width="50%" align="center" onClick="winner('left')">Name One Here</td>
@@ -102,8 +109,14 @@ function gathernames() {
 	just_names = str.split('\n');
 	console.log(just_names)
 	for (i = 0; i < just_names.length; i++) {
-		name_dict = {"name": just_names[i], "wins": 0, "bouts": 0, "win_prc": 0.0};
-		name_array.push(name_dict);
+	    var this_name = just_names[i]
+		if (this_name.includes('. ')) {
+		    this_name = this_name.split('. ')[1]
+		}
+		if (this_name.length > 0) {
+			name_dict = {"name": this_name, "wins": 0, "bouts": 0, "win_prc": 0.0};
+			name_array.push(name_dict);
+		}
 	}
 	pick_new_names_at_random();
 }
@@ -124,8 +137,19 @@ function show_rankings() {
 	
 	document.getElementById("winnerplace").innerHTML = winner_list;
 	
-	
 }
+
+function load_saved_names(){
+
+	if (localStorage["winner_list"]!=undefined) {
+		document.getElementById("namesarea").innerHTML = localStorage["winner_list"].replaceAll("<BR>","\n");
+	}
+}
+
+function save_game(){
+	localStorage.setItem("winner_list",winner_list)
+}
+
 
 </script>
 
