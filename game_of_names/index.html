@@ -107,8 +107,10 @@ function gathernames() {
 		if (this_name.includes('. ')) {
 		    this_name = this_name.split('. ')[1]
 		}
-		name_dict = {"name": this_name, "wins": 0, "bouts": 0, "win_prc": 0.0};
-		name_array.push(name_dict);
+		if (this_name.length > 0) {
+			name_dict = {"name": this_name, "wins": 0, "bouts": 0, "win_prc": 0.0};
+			name_array.push(name_dict);
+		}
 	}
 	pick_new_names_at_random();
 }
