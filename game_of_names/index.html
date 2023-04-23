@@ -1,0 +1,133 @@
+<html>
+<head>
+<title>Game of Names</title>
+<style>
+	td { font-size: 500%; }
+</style>
+</head>
+
+<body>
+<textarea id="namesarea" rows="5" cols="50">
+Ayla
+Anne
+Noelle
+Julia
+Juliana
+Madison
+Anna
+Luisa
+Johanna
+Mira
+Olivia
+Kiera
+Alice
+Persephone
+Robin
+Seven
+Zoe
+Chloe
+Fiona
+Annika
+Nika
+Ana
+Heather
+Rebecca
+Emma
+Paige
+Madeline
+Scout
+Leah
+Charlie
+Naomi
+Mia
+Isla
+Sage
+Cora
+</textarea>
+<button type="button" onClick="gathernames()">Submit!</button>
+<button type="button" onClick="show_rankings()">Rankings</button>
+<table border="5" width="100%" align="center">
+<tr>
+<td id="left_name" width="50%" align="center" onClick="winner('left')">Name One Here</td>
+<td id = "right_name" width="50%" align="center" onClick="winner('right')">Name Two Here</td>
+</tr>
+</table>
+
+<div id="winnerplace"></div>
+
+<script>
+
+var name_array = [];
+var sorted_array;
+var left_name_index;
+var right_name_index;
+
+function winner(side) {
+	if (side=='left') {
+		winner_index = left_name_index;
+		loser_index = right_name_index;
+	} else {
+		winner_index = right_name_index;
+		loser_index = left_name_index;
+	}
+
+	winner_name = name_array[winner_index]['name'];
+	
+	document.getElementById("winnerplace").innerHTML = "Winner: " + winner_name;
+	
+	name_array[winner_index]['wins'] = name_array[winner_index]['wins'] + 1
+	name_array[winner_index]['bouts'] = name_array[winner_index]['bouts'] + 1
+	name_array[loser_index]['bouts'] = name_array[loser_index]['bouts'] + 1
+	name_array[winner_index]['win_prc'] = name_array[winner_index]['wins'] / name_array[winner_index]['bouts']
+	name_array[loser_index]['win_prc'] = name_array[loser_index]['wins'] / name_array[loser_index]['bouts']
+	
+
+	pick_new_names_at_random();
+}
+
+function pick_new_names_at_random(){
+	left_name_index = Math.floor(name_array.length * Math.random());
+	right_name_index = left_name_index;
+	while (right_name_index == left_name_index) {
+		right_name_index = Math.floor(name_array.length * Math.random());
+	}	
+	document.getElementById("left_name").innerHTML  = name_array[left_name_index]['name'];
+	document.getElementById("right_name").innerHTML  = name_array[right_name_index]['name'];
+}
+
+function gathernames() {
+	name_array = []
+	var str = document.getElementById("namesarea").value;
+	var just_names
+	just_names = str.split('\n');
+	console.log(just_names)
+	for (i = 0; i < just_names.length; i++) {
+		name_dict = {"name": just_names[i], "wins": 0, "bouts": 0, "win_prc": 0.0};
+		name_array.push(name_dict);
+	}
+	pick_new_names_at_random();
+}
+
+
+function show_rankings() {
+	function compare(a, b){
+	  return b.win_prc - a.win_prc;
+	}
+	
+	sorted_array = name_array.sort(compare);
+	
+	var winner_list = ""
+	
+	for (i = 0; i < sorted_array.length; i++) {
+		winner_list = winner_list + (i+1).toString() + ". " + sorted_array[i].name + "<BR>"
+	}
+	
+	document.getElementById("winnerplace").innerHTML = winner_list;
+	
+	
+}
+
+</script>
+
+</body>
+</html>
