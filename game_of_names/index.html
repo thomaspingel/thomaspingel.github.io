@@ -8,42 +8,43 @@
 
 <body>
 <textarea id="namesarea" rows="5" cols="50">
-Ayla
-Anne
-Noelle
-Julia
-Juliana
-Madison
-Anna
-Luisa
-Johanna
-Mira
-Olivia
-Kiera
-Alice
-Persephone
-Robin
-Seven
-Zoe
-Chloe
-Fiona
-Annika
-Nika
-Ana
-Heather
-Rebecca
-Emma
-Paige
-Madeline
-Scout
-Leah
-Charlie
-Naomi
-Mia
-Isla
-Sage
-Cora
-</textarea>
+1. Ayla
+2. Anne
+3. Noelle
+4. Anna
+5. Olivia
+6. Kiera
+7. Alice
+8. Paige
+9. Johanna
+10. Isla
+11. Mira
+12. Heather
+13. Rebecca
+14. Charlie
+15. Persephone
+16. Julia
+17. Juliana
+18. Madison
+19. Luisa
+20. Robin
+21. Seven
+22. Zoe
+23. Chloe
+24. Fiona
+25. Annika
+26. Nika
+27. Ana
+28. Emma
+29. Madeline
+30. Scout
+31. Leah
+32. Naomi
+33. Mia
+34. Sage
+35. Cora
+Elaina / Elaine
+Lydia</textarea>
 <button type="button" onClick="gathernames()">Submit!</button>
 <button type="button" onClick="show_rankings()">Rankings</button>
 <table border="5" width="100%" align="center">
@@ -102,7 +103,11 @@ function gathernames() {
 	just_names = str.split('\n');
 	console.log(just_names)
 	for (i = 0; i < just_names.length; i++) {
-		name_dict = {"name": just_names[i], "wins": 0, "bouts": 0, "win_prc": 0.0};
+	    var this_name = just_names[i]
+		if (this_name.includes('. ')) {
+		    this_name = this_name.split('. ')[1]
+		}
+		name_dict = {"name": this_name, "wins": 0, "bouts": 0, "win_prc": 0.0};
 		name_array.push(name_dict);
 	}
 	pick_new_names_at_random();
