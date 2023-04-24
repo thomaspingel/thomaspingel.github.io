@@ -143,9 +143,11 @@ function load_saved_names(){
 	if (localStorage["winner_list"]!=undefined) {
 		document.getElementById("namesarea").innerHTML = localStorage["winner_list"].replaceAll("<BR>","\n");
 	}
+	gathernames()
 }
 
 function save_game(){
+	show_rankings()
 	localStorage.setItem("winner_list",winner_list)
 }
 
