@@ -67,6 +67,7 @@ var name_array = [];
 var sorted_array;
 var left_name_index;
 var right_name_index;
+var winner_list = ""
 
 function winner(side) {
 	if (side=='left') {
@@ -128,7 +129,7 @@ function show_rankings() {
 	
 	sorted_array = name_array.sort(compare);
 	
-	var winner_list = ""
+
 	
 	for (i = 0; i < sorted_array.length; i++) {
 		winner_list = winner_list + (i+1).toString() + ". " + sorted_array[i].name + "<BR>"
@@ -142,8 +143,8 @@ function load_saved_names(){
 
 	if (localStorage["winner_list"]!=undefined) {
 		document.getElementById("namesarea").innerHTML = localStorage["winner_list"].replaceAll("<BR>","\n");
+		gathernames()
 	}
-	gathernames()
 }
 
 function save_game(){
