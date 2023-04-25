@@ -124,32 +124,43 @@ function gathernames() {
 
 function show_rankings() {
 	function compare(a, b){
-	  return b.win_prc - a.win_prc;
-	}
-	
+	  if (b.win_prc - a.win_prc != 0 ) {
+		return (b.win_prc - a.win_prc);
+	  }
+	  if (b.win_prc >= .5) {
+		return (b.bouts - a.bouts) 
+	  }
+	  return (a.bouts - b.bouts)
+    }
 	sorted_array = name_array.sort(compare);
 	
 
+	winner_list = ""
 	
 	for (i = 0; i < sorted_array.length; i++) {
 		winner_list = winner_list + (i+1).toString() + ". " + sorted_array[i].name + "<BR>"
+		console.log(sorted_array[i].name + "," + sorted_array[i].win_prc + ',' + sorted_array[i].bouts);
 	}
+	console.log('\n')
+	
+	
 	
 	document.getElementById("winnerplace").innerHTML = winner_list;
 	
 }
 
 function load_saved_names(){
-
-	if (localStorage["winner_list"]!=undefined) {
-		document.getElementById("namesarea").innerHTML = localStorage["winner_list"].replaceAll("<BR>","\n");
+	winner_list=""
+	document.getElementById("namesarea").innerHTML = ""
+	if (localStorage["saved_winner_list"]!=undefined) {
+		document.getElementById("namesarea").innerHTML = localStorage["saved_winner_list"].replaceAll("<BR>","\n");
 		gathernames()
 	}
 }
 
 function save_game(){
 	show_rankings()
-	localStorage.setItem("winner_list",winner_list)
+	localStorage.setItem("saved_winner_list",winner_list)
 }
 
 
